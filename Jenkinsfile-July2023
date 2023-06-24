@@ -1,7 +1,7 @@
 node{
-  def mavenHome = tool name: 'maven3.8.2'
+  def mavenHome = tool name: 'maven3.9.2'
   stage('1Clone'){
-    git 'https://github.com/LandmakTechnology/maven-web-application'
+    git 'https://github.com/WesleysOrg/maven-web-application2/'
   }
   stage('2Test+build'){
     sh "${mavenHome}/bin/mvn clean package"
@@ -15,12 +15,14 @@ node{
   }
 
   stage('5Deploy'){
-    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.166.85.32:8177/')], contextPath: null, war: 'target/*war'
+    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://18.188.220.16:8177/')], contextPath: null, war: 'target/*war'
   }
   stage('6Notification'){
     emailext body: '''Hi Team,
+
 Build status
-Landmark Technologies''', recipientProviders: [developers(), contributor()], subject: 'build status', to: 'developers'
+
+Landmark Technologies''', recipientProviders: [developers(), contributor()], subject: 'build status', to: 'developers '
   }
 */
 }

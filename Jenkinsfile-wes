@@ -1,4 +1,4 @@
-//Jenkinsfile:
+//Jenkinsfile:declaritive
 https://github.com/WesleysOrg/maven-web-application2
 
 pipeline{
